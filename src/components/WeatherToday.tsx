@@ -26,11 +26,11 @@ const WeatherToday = ({ weatherCityProns, weatherCity, formatDate }: Props) => {
       </div>
       <div className="card-body">
         <div>
-          <span>{weatherCityProns?.list[0].main.temp_max.toFixed()}ºC</span>
+          <span>{weatherCity?.main.temp_max.toFixed()}ºC</span>
           <p>{t("High")}</p>
         </div>
         <div>
-          <span>{weatherCityProns?.list[0].main.temp_min.toFixed()}ºC</span>
+          <span>{weatherCity?.main.temp_min.toFixed()}ºC</span>
           <p>{t("Low")}</p>
         </div>
         <div>

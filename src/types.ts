@@ -25,7 +25,19 @@ export interface City {
     id:         number;
     name:       string;
     cod:        number;
-    list:       City[];
+    list:       WeatherPronsList[];
+}
+
+export interface WeatherPronsList {
+    dt:         number;
+    main:       Main;
+    weather:    Weather[];
+    clouds:     Clouds;
+    wind:       Wind;
+    visibility: number;
+    pop:        number;
+    sys:        Sys;
+    dt_txt:     Date;
 }
 
 export interface Clouds {
