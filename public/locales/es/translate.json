@@ -21,5 +21,6 @@
     "High": "Máxima",
     "Low": "Mínima",
     "Humidity": "Humedad",
-    "Wind": "Viento"
+    "Wind": "Viento",
+    "ErrorCity": "No se encontraron coincidencias"
 }

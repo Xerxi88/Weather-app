@@ -21,5 +21,6 @@
     "High": "Massima",
     "Low": "Minima",
     "Humidity": "Umidità",
-    "Wind": "Vento"
+    "Wind": "Vento",
+    "ErrorCity": "Nessuna corrispondenza trovata"
 }

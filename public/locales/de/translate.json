@@ -21,5 +21,6 @@
     "High": "Höchsttemperatur",
     "Low": "Tiefsttemperatur",
     "Humidity": "Luftfeuchtigkeit",
-    "Wind": "Wind"
+    "Wind": "Wind",
+    "ErrorCity": "Keine Übereinstimmungen gefunden"
 }

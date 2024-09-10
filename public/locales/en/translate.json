@@ -21,5 +21,6 @@
     "High": "High",
     "Low": "Low",
     "Humidity": "Humidity",
-    "Wind": "Wind"
+    "Wind": "Wind",
+    "ErrorCity": "No matches found"
 }

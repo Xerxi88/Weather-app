@@ -3,12 +3,19 @@ import useGetWeather from "./hooks/useGetWeather";
 import CitiesSlider from "./components/CitiesSlider";
 import i18next from "i18next";
 import Weather from "./components/Weather";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import FilterForm from "./components/FilterForm";
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { weatherCity, weatherCityProns } = useGetWeather(selectedCity);
+  const { weatherCity, weatherCityProns } = useGetWeather(
+    selectedCity,
+    inputRef,
+    setErrorMessage
+  );
 
   const changeLanguage = (lang: string) => {
     i18next.changeLanguage(lang);
@@ -20,6 +27,12 @@ function App() {
         <NavBar city={weatherCity?.name} />
       </header>
       <main>
+        <FilterForm
+          inputRef={inputRef}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          setSelectedCity={setSelectedCity}
+        />
         <Weather
           weatherCity={weatherCity}
           weatherCityProns={weatherCityProns}

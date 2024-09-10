@@ -111,7 +111,27 @@ body.dark-mode::before {
 
 main {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 0.2fr 2fr;
+}
+
+.filter {
+  display: flex;
+  justify-content: end;
+  margin-right: 4.5%;
+}
+
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+}
+
+.filter-cities {
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .weather-main {
@@ -325,6 +345,18 @@ main {
   .btn-dark-mode {
     font-size: 1.5rem;
   }
+
+  .filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+  }
+
+  .filter-box {
+    align-items: center;
+  }
+
   .weather-main {
     flex-direction: column;
     gap: 1rem;
