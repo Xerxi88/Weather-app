@@ -24,6 +24,7 @@ body {
   background: linear-gradient(345deg, #000000, #18114b, #200174);
   background-size: contain;
   z-index: 0;
+  user-select: none;
 }
 
 body::before {
@@ -34,7 +35,7 @@ body::before {
   width: 100%;
   height: 100vh;
   z-index: -1;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   background: linear-gradient(345deg, #3845ff, #47a7f0, #00aaff);
   background-size: contain;
   min-height: 100px;
@@ -50,7 +51,7 @@ body.dark-mode::before {
 body::before {
   content: "";
   z-index: -2;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   background: linear-gradient(345deg, #3845ff, #47a7f0, #00aaff);
   opacity: 1;
 }
@@ -65,6 +66,7 @@ body.dark-mode::before {
   align-items: center;
   padding: 1.2rem 1.8rem;
   color: white;
+  user-select: text;
 }
 
 .logo {
@@ -72,6 +74,18 @@ body.dark-mode::before {
   align-items: center;
   gap: 10px;
   font-size: 2em;
+}
+
+.logo button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.logo button svg {
+  transition: 0.3s ease;
+}
+.logo button svg:hover {
+  transform: scale(1.5);
 }
 
 .icons {
@@ -89,6 +103,7 @@ body.dark-mode::before {
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  user-select: none;
 }
 
 .gear-icon {
@@ -112,6 +127,8 @@ body.dark-mode::before {
 main {
   display: grid;
   grid-template-rows: 0.2fr 2fr;
+  position: relative;
+  overflow: hidden;
 }
 
 .filter {
@@ -129,9 +146,132 @@ main {
 
 .filter-cities {
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 20px;
   border: none;
   background-color: rgba(255, 255, 255, 0.8);
+}
+
+.container-fav-open {
+  width: 30%;
+  position: absolute;
+  right: 0;
+  border-radius: 15px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 2px solid white;
+  border-right: 0;
+  background: linear-gradient(#020c93, #020c93, #020c93, #173a7f);
+  transition: 0.5s ease-in-out;
+  box-shadow: -8px 8px 5px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sad-face {
+  width: 75%;
+}
+
+.container-fav-open h2,
+.container-fav-close h2 {
+  padding: 0px 10px;
+}
+.container-fav-close {
+  width: 30%;
+  position: absolute;
+  right: -30%;
+  border-radius: 15px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 2px solid white;
+  border-right: 0;
+  background: linear-gradient(#020c93, #020c93, #020c93, #173a7f);
+  transition: 0.5s ease-in-out;
+  box-shadow: -0px 0px 5px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  height: 80vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container {
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: white;
+  font-weight: bold;
+  width: 80%;
+  display: flex;
+  align-items: start;
+  padding: 0.8rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.card-fav-city {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  padding-left: 10px;
+  justify-content: space-between;
+  gap: 20px;
+}
+.remove-city-favs {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.card-city-temp {
+  font-size: 1.8rem;
+}
+.card-city-cond {
+  font-weight: normal;
+}
+
+.navbar-favs {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px dotted white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-favs button {
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.navbar-favs button:hover {
+  transform: scale(1.2);
 }
 
 .weather-main {
@@ -241,7 +381,7 @@ main {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
   color: black;
 }
 
@@ -297,6 +437,34 @@ main {
     gap: 0;
   }
 
+  .container-fav-open {
+    width: 80%;
+    right: 10%;
+    top: 0;
+    height: 60vh;
+    border-top: 0;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 15px;
+    border-right: 2px solid white;
+  }
+
+  .container-fav-close {
+    width: 80%;
+    right: 10%;
+    height: 100vh;
+    position: absolute;
+    top: -100vh;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-right: 2px solid white;
+    overflow-y: hidden;
+    box-shadow: -8px -8px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-favs {
+    justify-content: space-evenly;
+  }
+
   .card-header {
     padding: 1rem;
   }
@@ -335,11 +503,12 @@ main {
   }
 
   .icons {
-    gap: 20px;
+    gap: 15px;
   }
 
   .logo {
     font-size: 1.5rem;
+    gap: 5px;
   }
 
   .btn-dark-mode {
@@ -366,6 +535,18 @@ main {
     gap: 0;
   }
 
+  .container-fav-open {
+    width: 100%;
+    right: 0;
+    height: 100vh;
+  }
+
+  .container-fav-close {
+    width: 100%;
+    right: 0;
+    height: 100vh;
+  }
+
   .card-body div span {
     font-size: 0.8rem;
   }
@@ -373,11 +554,19 @@ main {
   .prons-today {
     width: 100%;
   }
+
+  .navbar-favs {
+    justify-content: space-between;
+  }
 }
 
 @media only screen and (max-width: 360px) {
   body::before {
     height: 130%;
+  }
+
+  .icons {
+    gap: 10px;
   }
 
   .weather {

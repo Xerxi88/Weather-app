@@ -20,6 +20,7 @@ export interface Main {
 
 export interface Weather {
   icon: string;
+  main: string;
 }
 
 const City = ({ name, length, index, onSelectCity }: CityProps) => {

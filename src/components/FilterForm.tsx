@@ -34,7 +34,7 @@ const FilterForm = ({
           className="filter-cities"
           ref={inputRef}
           name="cityInput"
-          placeholder="Madrid, Barcelona, ....."
+          placeholder="Madrid, Barcelona,....."
         />
         {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>

@@ -22,5 +22,7 @@
     "Low": "Mínima",
     "Humidity": "Humitat",
     "Wind": "Vent",
-    "ErrorCity": "No es van trobar coincidències"
+    "ErrorCity": "No es van trobar coincidències",
+    "AddCitys": "Encara no hi ha ciutats afegides",
+    "ManageCities": "Gestionar ciutats"
 }

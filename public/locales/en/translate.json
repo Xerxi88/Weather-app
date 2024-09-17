@@ -22,5 +22,7 @@
     "Low": "Low",
     "Humidity": "Humidity",
     "Wind": "Wind",
-    "ErrorCity": "No matches found"
+    "ErrorCity": "No matches found",
+    "AddCitys": "No cities added yet",
+    "ManageCities": "Manage cities"
 }

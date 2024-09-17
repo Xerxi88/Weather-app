@@ -4,7 +4,30 @@ import { Props } from "./Weather";
 const WeatherTomorrow = ({ weatherCityProns, formatDate }: Props) => {
   const { t } = useTranslation(["translate"]);
 
-  const timestampTomorrow: number | undefined = weatherCityProns?.list[0].dt;
+  const getTomorrowDate = () => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    return tomorrow.toISOString().split("T")[0];
+  };
+
+  const filteredTomorrowForecasts = weatherCityProns?.list.filter(
+    (forecast) => {
+      const forecastDate = forecast.dt_txt.toString().split(" ")[0];
+      return forecastDate === getTomorrowDate();
+    }
+  );
+
+  const maxTemp = filteredTomorrowForecasts
+    ? Math.max(...filteredTomorrowForecasts.map((item) => item.main.temp_max))
+    : 0;
+
+  const minTemp = filteredTomorrowForecasts
+    ? Math.min(...filteredTomorrowForecasts.map((item) => item.main.temp_min))
+    : 0;
+
+  const timestampTomorrow: number | undefined =
+    filteredTomorrowForecasts?.[0]?.dt;
 
   return (
     <div className="weather">
@@ -28,11 +51,11 @@ const WeatherTomorrow = ({ weatherCityProns, formatDate }: Props) => {
       </div>
       <div className="card-body">
         <div>
-          <span>{weatherCityProns?.list[8].main.temp_max.toFixed()}ºC</span>
+          <span>{maxTemp.toFixed()}ºC</span>
           <p>{t("High")}</p>
         </div>
         <div>
-          <span>{weatherCityProns?.list[8].main.temp_min.toFixed()}ºC</span>
+          <span>{minTemp.toFixed()}ºC</span>
           <p>{t("Low")}</p>
         </div>
         <div>

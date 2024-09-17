@@ -41,6 +41,7 @@ const WeatherToday = ({ weatherCity, weatherCityProns }: Props) => {
             height="120px"
           />
         </div>
+
         <div className="prons-today">
           <table>
             <thead key={weatherCity?.id}>

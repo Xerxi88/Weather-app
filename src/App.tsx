@@ -5,10 +5,12 @@ import i18next from "i18next";
 import Weather from "./components/Weather";
 import { useRef, useState } from "react";
 import FilterForm from "./components/FilterForm";
+import CitiesFavorites from "./components/CitiesFavorites";
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [openFavorites, setOpenFavorites] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { weatherCity, weatherCityProns } = useGetWeather(
@@ -24,7 +26,11 @@ function App() {
   return (
     <>
       <header>
-        <NavBar city={weatherCity?.name} />
+        <NavBar
+          city={weatherCity?.name}
+          setOpenFavorites={setOpenFavorites}
+          openFavorites={openFavorites}
+        />
       </header>
       <main>
         <FilterForm
@@ -32,6 +38,10 @@ function App() {
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
           setSelectedCity={setSelectedCity}
+        />
+        <CitiesFavorites
+          openFavorites={openFavorites}
+          setOpenFavorites={setOpenFavorites}
         />
         <Weather
           weatherCity={weatherCity}

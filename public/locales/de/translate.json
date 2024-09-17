@@ -22,5 +22,7 @@
     "Low": "Tiefsttemperatur",
     "Humidity": "Luftfeuchtigkeit",
     "Wind": "Wind",
-    "ErrorCity": "Keine Übereinstimmungen gefunden"
+    "ErrorCity": "Keine Übereinstimmungen gefunden",
+    "AddCitys": "Noch keine Städte hinzugefügt",
+    "ManageCities": "Städte verwalten"
 }

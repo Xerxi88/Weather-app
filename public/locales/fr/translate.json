@@ -22,5 +22,7 @@
     "Low": "Minimale",
     "Humidity": "Humidité",
     "Wind": "Vent",
-    "ErrorCity": "Aucune correspondance trouvée"
+    "ErrorCity": "Aucune correspondance trouvée",
+    "AddCitys": "Il n'y a pas encore de villes ajoutées",
+    "ManageCities": "Gérer des villes"
 }
