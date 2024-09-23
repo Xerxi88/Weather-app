@@ -1,10 +1,23 @@
 import { useTranslation } from "react-i18next";
 import { Props } from "./Weather";
 
-const WeatherToday = ({ weatherCityProns, weatherCity, formatDate }: Props) => {
+const WeatherToday = ({
+  weatherCityProns,
+  weatherCity,
+  formatDate,
+  temperature,
+}: Props) => {
   const { t } = useTranslation(["translate"]);
 
   const timestamp: number | undefined = weatherCity?.dt;
+
+  const convertTemp = (value: number) => {
+    if (temperature === "celsius") {
+      return value + "ºC";
+    } else {
+      return (value * 1.8 + 32).toFixed() + "ºF";
+    }
+  };
 
   return (
     <div className="weather">
@@ -26,11 +39,15 @@ const WeatherToday = ({ weatherCityProns, weatherCity, formatDate }: Props) => {
       </div>
       <div className="card-body">
         <div>
-          <span>{weatherCity?.main.temp_max.toFixed()}ºC</span>
+          <span>
+            {convertTemp(Number(weatherCity?.main.temp_max.toFixed()))}
+          </span>
           <p>{t("High")}</p>
         </div>
         <div>
-          <span>{weatherCity?.main.temp_min.toFixed()}ºC</span>
+          <span>
+            {convertTemp(Number(weatherCity?.main.temp_min.toFixed()))}
+          </span>
           <p>{t("Low")}</p>
         </div>
         <div>

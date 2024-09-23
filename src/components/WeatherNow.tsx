@@ -5,10 +5,23 @@ import { City } from "../types";
 type Props = {
   weatherCity: City | null;
   weatherCityProns: City | null;
+  temperature: string;
 };
 
-const WeatherToday = ({ weatherCity, weatherCityProns }: Props) => {
+const WeatherToday = ({
+  weatherCity,
+  weatherCityProns,
+  temperature,
+}: Props) => {
   const { t } = useTranslation(["translate"]);
+
+  const convertTemp = (value: number, decimals: boolean = true) => {
+    if (temperature === "celsius") {
+      return value + "º";
+    } else {
+      return (Number(value) * 1.8 + 32).toFixed(decimals ? 1 : 0) + "º";
+    }
+  };
 
   const weatherPronsToday = useMemo(() => {
     return weatherCityProns?.list.splice(0, 5);
@@ -29,7 +42,7 @@ const WeatherToday = ({ weatherCity, weatherCityProns }: Props) => {
       <div className="weather-container">
         <div>
           <div className="weather-temp">
-            {weatherCity?.main.temp.toFixed(1)}ºC
+            {convertTemp(Number(weatherCity?.main.temp.toFixed(1)), true)}
           </div>
           <div className="weather-state">
             {t(`${weatherCity?.weather?.[0]?.main}`)}
@@ -67,7 +80,7 @@ const WeatherToday = ({ weatherCity, weatherCityProns }: Props) => {
               <tr>
                 {weatherPronsToday?.map((weather) => (
                   <td key={weather.dt} className="prons-today-temp">
-                    {weather.main.temp.toFixed()}º
+                    {convertTemp(Number(weather.main.temp.toFixed()), false)}
                   </td>
                 ))}
               </tr>

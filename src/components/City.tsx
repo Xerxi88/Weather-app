@@ -6,6 +6,7 @@ type CityProps = {
   length: number;
   index: number;
   onSelectCity: (city: string) => void;
+  temperature: string;
 };
 
 export interface Params {
@@ -23,7 +24,13 @@ export interface Weather {
   main: string;
 }
 
-const City = ({ name, length, index, onSelectCity }: CityProps) => {
+const City = ({
+  name,
+  length,
+  index,
+  onSelectCity,
+  temperature,
+}: CityProps) => {
   const APIKEY = "629d361c49d59dfaf52ccadda2f42bbe";
 
   const [data, setData] = useState<Params | null>(null);
@@ -38,6 +45,14 @@ const City = ({ name, length, index, onSelectCity }: CityProps) => {
       .then((res) => setData(res));
   }, [name]);
 
+  const convertTemp = (value: number) => {
+    if (temperature === "celsius") {
+      return value + "º";
+    } else {
+      return (value * 1.8 + 32).toFixed() + "º";
+    }
+  };
+
   return (
     <button
       className="city"
@@ -51,7 +66,7 @@ const City = ({ name, length, index, onSelectCity }: CityProps) => {
     >
       <div className="block">
         {t(`${name}`) + "  "}
-        {data?.main.temp.toFixed()}º
+        {convertTemp(Number(data?.main.temp.toFixed()))}
         <img
           src={`https://openweathermap.org/img/wn/${data?.weather?.[0]?.icon}@2x.png`}
           alt="weather-icon"

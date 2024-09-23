@@ -5,11 +5,13 @@ import { DarkModeContext } from "../context/DarkModeContext";
 import WeatherNow from "./WeatherNow";
 import WeatherToday from "./WeatherToday";
 import WeatherTomorrow from "./WeatherTomorrow";
+import { CitiesFavsContext } from "../context/CitiesFavsContext";
 
 export type Props = {
   weatherCity?: City | null;
   weatherCityProns: City | null;
   formatDate?: (timestamp: number) => string;
+  temperature: string;
 };
 
 function formatDate(timestamp: number): string {
@@ -23,12 +25,15 @@ function formatDate(timestamp: number): string {
 const Weather = ({ weatherCity, weatherCityProns }: Props) => {
   const { isLight } = useContext(DarkModeContext);
 
+  const { temperature } = useContext(CitiesFavsContext);
+
   return (
     <section className="weather-main">
       {weatherCity ? (
         <WeatherNow
           weatherCity={weatherCity}
           weatherCityProns={weatherCityProns}
+          temperature={temperature}
         />
       ) : (
         <div className="weather-container">
@@ -46,6 +51,7 @@ const Weather = ({ weatherCity, weatherCityProns }: Props) => {
             weatherCityProns={weatherCityProns}
             weatherCity={weatherCity}
             formatDate={formatDate}
+            temperature={temperature}
           />
         ) : (
           <PuffLoader
@@ -59,6 +65,7 @@ const Weather = ({ weatherCity, weatherCityProns }: Props) => {
           <WeatherTomorrow
             weatherCityProns={weatherCityProns}
             formatDate={formatDate}
+            temperature={temperature}
           />
         ) : (
           <PuffLoader

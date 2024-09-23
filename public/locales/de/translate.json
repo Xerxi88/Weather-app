@@ -24,5 +24,14 @@
     "Wind": "Wind",
     "ErrorCity": "Keine Übereinstimmungen gefunden",
     "AddCitys": "Noch keine Städte hinzugefügt",
-    "ManageCities": "Städte verwalten"
+    "ManageCities": "Städte verwalten",
+    "Lang": "Sprache",
+    "Spanish": "Spanisch",
+    "Catalan": "Katalanisch",
+    "English": "Englisch",
+    "French": "Französisch",
+    "Italian": "Italienisch",
+    "German": "Deutsch",
+    "Setting": "Einstellungen",
+    "Temperature": "Temperatur"
 }

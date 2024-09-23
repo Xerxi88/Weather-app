@@ -24,5 +24,14 @@
     "Wind": "Viento",
     "ErrorCity": "No se encontraron coincidencias",
     "AddCitys": "Aún no hay ciudades agregadas",
-    "ManageCities": "Gestionar ciudades"
+    "ManageCities": "Gestionar ciudades",
+    "Lang": "Idioma",
+    "Spanish": "Español",
+    "Catalan": "Catalán",
+    "English": "Inglés",
+    "French": "Francés",
+    "Italian": "Italiano",
+    "German": "Alemán",
+    "Setting": "Ajustes",
+    "Temperature": "Temperatura"
 }

@@ -24,5 +24,14 @@
     "Wind": "Vent",
     "ErrorCity": "Aucune correspondance trouvée",
     "AddCitys": "Il n'y a pas encore de villes ajoutées",
-    "ManageCities": "Gérer des villes"
+    "ManageCities": "Gérer des villes",
+    "Lang": "Langue",
+    "Spanish": "Espagnol",
+    "Catalan": "Catalan",
+    "English": "Anglais",
+    "French": "Français",
+    "Italian": "Italien",
+    "German": "Allemand",
+    "Setting": "Paramètres",
+    "Temperature": "Température"
 }

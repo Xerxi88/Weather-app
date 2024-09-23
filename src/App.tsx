@@ -3,14 +3,17 @@ import useGetWeather from "./hooks/useGetWeather";
 import CitiesSlider from "./components/CitiesSlider";
 import i18next from "i18next";
 import Weather from "./components/Weather";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FilterForm from "./components/FilterForm";
 import CitiesFavorites from "./components/CitiesFavorites";
+import Options from "./components/Options";
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("es");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [openFavorites, setOpenFavorites] = useState<boolean>(false);
+  const [openOptions, setOpenOptions] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { weatherCity, weatherCityProns } = useGetWeather(
@@ -19,9 +22,9 @@ function App() {
     setErrorMessage
   );
 
-  const changeLanguage = (lang: string) => {
-    i18next.changeLanguage(lang);
-  };
+  useEffect(() => {
+    i18next.changeLanguage(selectedLanguage);
+  }, [selectedLanguage]);
 
   return (
     <>
@@ -30,6 +33,8 @@ function App() {
           city={weatherCity?.name}
           setOpenFavorites={setOpenFavorites}
           openFavorites={openFavorites}
+          setOpenOptions={setOpenOptions}
+          openOptions={openOptions}
         />
       </header>
       <main>
@@ -39,9 +44,10 @@ function App() {
           setErrorMessage={setErrorMessage}
           setSelectedCity={setSelectedCity}
         />
-        <CitiesFavorites
-          openFavorites={openFavorites}
-          setOpenFavorites={setOpenFavorites}
+        <CitiesFavorites openFavorites={openFavorites} />
+        <Options
+          openOptions={openOptions}
+          setSelectedLanguage={setSelectedLanguage}
         />
         <Weather
           weatherCity={weatherCity}
@@ -49,16 +55,6 @@ function App() {
         />
         <CitiesSlider onSelectCity={setSelectedCity} />
       </main>
-      <footer>
-        <div>
-          <button onClick={() => changeLanguage("en")}>Inglés</button>
-          <button onClick={() => changeLanguage("es")}>Español</button>
-          <button onClick={() => changeLanguage("ca")}>Catalan</button>
-          <button onClick={() => changeLanguage("fr")}>Frances</button>
-          <button onClick={() => changeLanguage("it")}>Italiano</button>
-          <button onClick={() => changeLanguage("de")}>Aleman</button>
-        </div>
-      </footer>
     </>
   );
 }

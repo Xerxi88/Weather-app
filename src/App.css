@@ -251,6 +251,128 @@ main {
   font-weight: normal;
 }
 
+.options-open {
+  position: absolute;
+  width: 350px;
+  height: auto;
+  top: 0;
+  right: 0;
+  padding: 0 1rem;
+  text-align: start;
+  background-color: #18114b;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  padding-bottom: 20px;
+  color: white;
+  transition: 1s ease;
+  z-index: 99;
+}
+
+.options-open::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  right: 2rem;
+  width: 25px;
+  height: 25px;
+  transform: rotate(45deg);
+  background-color: #18114b;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.options-close {
+  position: absolute;
+  width: 350px;
+  top: -100%;
+  right: 0;
+  padding: 1rem;
+  background-color: #18114b;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  color: red;
+  transition: 1s ease;
+}
+
+.light {
+  background-color: #47a7f0;
+}
+
+.options-close p,
+.options-open p {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-options {
+  position: absolute;
+  background-color: #333;
+  right: 0;
+  top: 0;
+}
+
+.options-menu {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+.language-option,
+.temperature-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+select {
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 0.9rem;
+}
+
+option {
+  background-color: #333;
+  color: white;
+}
+
+hr {
+  display: flex;
+  width: 92%;
+  opacity: 0.4;
+  margin: 0 auto;
+}
+
+.temperature {
+  position: relative;
+}
+
+.temperature-title {
+  font-size: 0.9rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.temperature-name {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  background-color: #555;
+  border-radius: 10px;
+  z-index: 100;
+  text-wrap: nowrap;
+}
+
+.temperature-name div {
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+}
+
 .navbar-favs {
   width: 100%;
   display: flex;
@@ -549,6 +671,19 @@ main {
 
   .card-body div span {
     font-size: 0.8rem;
+  }
+
+  .options-open::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    right: 1.2rem;
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+    background-color: #18114b;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
   }
 
   .prons-today {

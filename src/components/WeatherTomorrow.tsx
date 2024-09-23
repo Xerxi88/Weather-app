@@ -1,8 +1,20 @@
 import { useTranslation } from "react-i18next";
 import { Props } from "./Weather";
 
-const WeatherTomorrow = ({ weatherCityProns, formatDate }: Props) => {
+const WeatherTomorrow = ({
+  weatherCityProns,
+  formatDate,
+  temperature,
+}: Props) => {
   const { t } = useTranslation(["translate"]);
+
+  const convertTemp = (value: number) => {
+    if (temperature === "celsius") {
+      return value + "ºC";
+    } else {
+      return (value * 1.8 + 32).toFixed() + "ºF";
+    }
+  };
 
   const getTomorrowDate = () => {
     const today = new Date();
@@ -18,13 +30,15 @@ const WeatherTomorrow = ({ weatherCityProns, formatDate }: Props) => {
     }
   );
 
-  const maxTemp = filteredTomorrowForecasts
-    ? Math.max(...filteredTomorrowForecasts.map((item) => item.main.temp_max))
-    : 0;
+  const maxTemp =
+    filteredTomorrowForecasts && filteredTomorrowForecasts.length > 0
+      ? Math.max(...filteredTomorrowForecasts.map((item) => item.main.temp_max))
+      : 0;
 
-  const minTemp = filteredTomorrowForecasts
-    ? Math.min(...filteredTomorrowForecasts.map((item) => item.main.temp_min))
-    : 0;
+  const minTemp =
+    filteredTomorrowForecasts && filteredTomorrowForecasts.length > 0
+      ? Math.min(...filteredTomorrowForecasts.map((item) => item.main.temp_min))
+      : 0;
 
   const timestampTomorrow: number | undefined =
     filteredTomorrowForecasts?.[0]?.dt;
@@ -51,11 +65,11 @@ const WeatherTomorrow = ({ weatherCityProns, formatDate }: Props) => {
       </div>
       <div className="card-body">
         <div>
-          <span>{maxTemp.toFixed()}ºC</span>
+          <span>{convertTemp(Number(maxTemp.toFixed()))}</span>
           <p>{t("High")}</p>
         </div>
         <div>
-          <span>{minTemp.toFixed()}ºC</span>
+          <span>{convertTemp(Number(minTemp.toFixed()))}</span>
           <p>{t("Low")}</p>
         </div>
         <div>

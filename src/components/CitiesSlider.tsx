@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import City from "./City";
+import { CitiesFavsContext } from "../context/CitiesFavsContext";
 
 const arrayCities = [
   "Madrid",
@@ -28,6 +30,7 @@ const CitiesSlider = ({
 }: {
   onSelectCity: (city: string) => void;
 }) => {
+  const { temperature } = useContext(CitiesFavsContext);
   return (
     <section className="list-cities">
       {arrayCities.map((city, index) => (
@@ -37,6 +40,7 @@ const CitiesSlider = ({
           length={arrayCities.length}
           index={index}
           onSelectCity={onSelectCity}
+          temperature={temperature}
         />
       ))}
     </section>

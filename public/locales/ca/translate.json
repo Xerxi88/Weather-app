@@ -24,5 +24,14 @@
     "Wind": "Vent",
     "ErrorCity": "No es van trobar coincidències",
     "AddCitys": "Encara no hi ha ciutats afegides",
-    "ManageCities": "Gestionar ciutats"
+    "ManageCities": "Gestionar ciutats",
+    "Lang": "Idioma",
+    "Spanish": "Espanyol",
+    "Catalan": "Català",
+    "English": "Anglès",
+    "French": "Francès",
+    "Italian": "Italià",
+    "German": "Alemany",
+    "Setting": "Ajustos",
+    "Temperature": "Temperatura"
 }

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Params } from "./City";
 import { useTranslation } from "react-i18next";
 import { CitiesFavsContext } from "../context/CitiesFavsContext";
+import { Slash } from "./Icons";
 
 interface CityFav {
   city: string;
@@ -15,7 +16,15 @@ const CardCityFav = ({ city, removeCityIcon }: CityFav) => {
 
   const { t } = useTranslation(["translate"]);
 
-  const { removeCity } = useContext(CitiesFavsContext);
+  const { removeCity, temperature } = useContext(CitiesFavsContext);
+
+  const convertTemp = (value: number) => {
+    if (temperature === "celsius") {
+      return value + "ºC";
+    } else {
+      return (value * 1.8 + 32).toFixed(1) + "ºF";
+    }
+  };
 
   useEffect(() => {
     fetch(
@@ -31,7 +40,9 @@ const CardCityFav = ({ city, removeCityIcon }: CityFav) => {
         <div className="card-fav-city">
           <p>{data?.name}</p>
           <span>
-            <p className="card-city-temp">{data?.main.temp.toFixed(1)}ºC</p>
+            <p className="card-city-temp">
+              {convertTemp(Number(data?.main.temp.toFixed(1)))}
+            </p>
             <p className="card-city-cond">{t(`${data?.weather?.[0]?.main}`)}</p>
           </span>
         </div>
@@ -47,18 +58,7 @@ const CardCityFav = ({ city, removeCityIcon }: CityFav) => {
             className="remove-city-favs"
             onClick={() => removeCity(data?.name || city)}
           >
-            <svg
-              className="close"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g data-name="Layer 2">
-                <g data-name="slash">
-                  <rect width="24" height="24" opacity="0" />
-                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm8 10a7.92 7.92 0 0 1-1.69 4.9L7.1 5.69A7.92 7.92 0 0 1 12 4a8 8 0 0 1 8 8zM4 12a7.92 7.92 0 0 1 1.69-4.9L16.9 18.31A7.92 7.92 0 0 1 12 20a8 8 0 0 1-8-8z" />
-                </g>
-              </g>
-            </svg>
+            <Slash />
           </button>
         )}
       </div>

@@ -24,5 +24,14 @@
     "Wind": "Wind",
     "ErrorCity": "No matches found",
     "AddCitys": "No cities added yet",
-    "ManageCities": "Manage cities"
+    "ManageCities": "Manage cities",
+    "Lang": "Language",
+    "Spanish": "Spanish",
+    "Catalan": "Catalan",
+    "English": "English",
+    "French": "French",
+    "Italian": "Italian",
+    "German": "German",
+    "Setting": "Settings",
+    "Temperature": "Temperature"
 }
