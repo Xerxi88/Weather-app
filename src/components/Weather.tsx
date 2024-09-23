@@ -11,7 +11,7 @@ export type Props = {
   weatherCity?: City | null;
   weatherCityProns: City | null;
   formatDate?: (timestamp: number) => string;
-  temperature: string;
+  temperature?: string;
 };
 
 function formatDate(timestamp: number): string {
