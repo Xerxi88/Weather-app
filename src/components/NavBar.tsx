@@ -4,7 +4,15 @@ import { useTranslation } from "react-i18next";
 import { PulseLoader } from "react-spinners";
 import { DarkModeContext } from "../context/DarkModeContext";
 import { CitiesFavsContext } from "../context/CitiesFavsContext";
-import { BuildingAdd, BuildingSlash, GearIcon, MapIcon, Pin } from "./Icons";
+import {
+  BuildingAdd,
+  BuildingSlash,
+  GearIcon,
+  MapIcon,
+  MoonIcon,
+  Pin,
+  SunIcon,
+} from "./Icons";
 
 export type Props = {
   city: string | undefined;
@@ -50,9 +58,21 @@ export const NavBar = ({
       </div>
 
       <div className="icons" data-testid="icons">
-        <button className="btn-dark-mode" onClick={handleLight}>
-          {isLight ? "🌚" : "🌞"}
-        </button>
+        <label className="switch">
+          <span className="sun">
+            <SunIcon />
+          </span>
+          <span className="moon">
+            <MoonIcon />
+          </span>
+          <input
+            type="checkbox"
+            className="input"
+            onChange={handleLight}
+            checked={isLight}
+          />
+          <span className="slider"></span>
+        </label>
         <div onClick={() => setOpenFavorites(!openFavorites)}>
           <MapIcon />
         </div>

@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CitiesFavsContext } from "../context/CitiesFavsContext";
 import { DarkModeContext } from "../context/DarkModeContext";
+// import { SunriseIcon, SunsetIcon } from "./Icons";
 
 interface Props {
   openOptions: boolean;
@@ -98,6 +99,17 @@ const Options = ({ openOptions, setSelectedLanguage }: Props) => {
             )}
           </div>
         </div>
+        {/* <hr />
+        <div className="sunset-option">
+          <span>{t(`Day/Night switch`)}</span>
+          <div>
+            <SunriseIcon />
+            <input type="number" min={0} max={23} />
+            <SunsetIcon />
+            <input type="number" min={0} max={23} />
+          </div>
+          Sunsets options in progress...
+        </div> */}
       </div>
     </section>
   );
