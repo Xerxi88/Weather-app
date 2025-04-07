@@ -138,8 +138,8 @@ export const SunsetIcon = () => (
     stroke-linejoin="round"
     className="feather feather-sunset"
     id="Sunset--Streamline-Feather"
-    height="28"
-    width="28"
+    height="30"
+    width="30"
   >
     <path d="M10.625 11.25a3.125 3.125 0 0 0 -6.25 0" stroke-width="1"></path>
     <path d="m7.5 5.625 0 -4.375" stroke-width="1"></path>
@@ -162,8 +162,8 @@ export const SunriseIcon = () => (
     stroke-linejoin="round"
     className="feather feather-sunrise"
     id="Sunrise--Streamline-Feather"
-    height="28"
-    width="28"
+    height="30"
+    width="30"
   >
     <path d="M10.625 11.25a3.125 3.125 0 0 0 -6.25 0" stroke-width="1"></path>
     <path d="m7.5 1.25 0 4.375" stroke-width="1"></path>

@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import FilterForm from "./components/FilterForm";
 import CitiesFavorites from "./components/CitiesFavorites";
 import Options from "./components/Options";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
@@ -28,33 +30,35 @@ function App() {
 
   return (
     <>
-      <header>
-        <NavBar
-          city={weatherCity?.name}
-          setOpenFavorites={setOpenFavorites}
-          openFavorites={openFavorites}
-          setOpenOptions={setOpenOptions}
-          openOptions={openOptions}
-        />
-      </header>
-      <main>
-        <FilterForm
-          inputRef={inputRef}
-          errorMessage={errorMessage}
-          setErrorMessage={setErrorMessage}
-          setSelectedCity={setSelectedCity}
-        />
-        <CitiesFavorites openFavorites={openFavorites} />
-        <Options
-          openOptions={openOptions}
-          setSelectedLanguage={setSelectedLanguage}
-        />
-        <Weather
-          weatherCity={weatherCity}
-          weatherCityProns={weatherCityProns}
-        />
-        <CitiesSlider onSelectCity={setSelectedCity} />
-      </main>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <header>
+          <NavBar
+            city={weatherCity?.name}
+            setOpenFavorites={setOpenFavorites}
+            openFavorites={openFavorites}
+            setOpenOptions={setOpenOptions}
+            openOptions={openOptions}
+          />
+        </header>
+        <main>
+          <FilterForm
+            inputRef={inputRef}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+            setSelectedCity={setSelectedCity}
+          />
+          <CitiesFavorites openFavorites={openFavorites} />
+          <Options
+            openOptions={openOptions}
+            setSelectedLanguage={setSelectedLanguage}
+          />
+          <Weather
+            weatherCity={weatherCity}
+            weatherCityProns={weatherCityProns}
+          />
+          <CitiesSlider onSelectCity={setSelectedCity} />
+        </main>
+      </LocalizationProvider>
     </>
   );
 }

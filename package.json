@@ -11,7 +11,12 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.0.1",
+    "@mui/x-date-pickers": "^7.28.3",
     "@testing-library/react": "^16.0.0",
+    "dayjs": "^1.11.13",
     "i18next": "^23.14.0",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.6.1",

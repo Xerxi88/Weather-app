@@ -2,7 +2,9 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CitiesFavsContext } from "../context/CitiesFavsContext";
 import { DarkModeContext } from "../context/DarkModeContext";
-// import { SunriseIcon, SunsetIcon } from "./Icons";
+import { SunriseIcon, SunsetIcon } from "./Icons";
+import { MobileTimePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 
 interface Props {
   openOptions: boolean;
@@ -12,7 +14,13 @@ interface Props {
 const Options = ({ openOptions, setSelectedLanguage }: Props) => {
   const { t } = useTranslation(["translate"]);
 
-  const { isLight } = useContext(DarkModeContext);
+  const {
+    isLight,
+    darkModeStart,
+    setDarkModeStart,
+    lightModeStart,
+    setLightModeStart,
+  } = useContext(DarkModeContext);
 
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -46,6 +54,24 @@ const Options = ({ openOptions, setSelectedLanguage }: Props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const sharedTextFieldProps = {
+    fullWidth: true,
+    sx: {
+      width: "65px",
+      backgroundColor: "transparent",
+      border: "1px solid #ffffff",
+      borderRadius: "5px",
+      "& .MuiInputBase-input": {
+        padding: 0,
+        color: "#ffffff",
+        display: "flex",
+        justifyContent: "center",
+        cursor: "pointer",
+        userSelect: "none",
+      },
+    },
+  };
 
   return (
     <section
@@ -99,17 +125,64 @@ const Options = ({ openOptions, setSelectedLanguage }: Props) => {
             )}
           </div>
         </div>
-        {/* <hr />
+        <hr />
         <div className="sunset-option">
           <span>{t(`Day/Night switch`)}</span>
-          <div>
-            <SunriseIcon />
-            <input type="number" min={0} max={23} />
-            <SunsetIcon />
-            <input type="number" min={0} max={23} />
-          </div>
-          Sunsets options in progress...
-        </div> */}
+          <section>
+            <div className="option-container">
+              <SunriseIcon />
+              <MobileTimePicker
+                value={dayjs()
+                  .hour(lightModeStart.hour)
+                  .minute(lightModeStart.minute)}
+                ampm={false}
+                format="HH:mm[h]"
+                onChange={(newValue) => {
+                  if (newValue) {
+                    setLightModeStart({
+                      hour: newValue.hour(),
+                      minute: newValue.minute(),
+                    });
+                  }
+                }}
+                slotProps={{
+                  textField: sharedTextFieldProps,
+                  mobilePaper: {
+                    sx: {
+                      backgroundColor: "#63ceff",
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div className="option-container">
+              <SunsetIcon />
+              <MobileTimePicker
+                value={dayjs()
+                  .hour(darkModeStart.hour)
+                  .minute(darkModeStart.minute)}
+                ampm={false}
+                format="HH:mm[h]"
+                onChange={(newValue) => {
+                  if (newValue) {
+                    setDarkModeStart({
+                      hour: newValue.hour(),
+                      minute: newValue.minute(),
+                    });
+                  }
+                }}
+                slotProps={{
+                  textField: sharedTextFieldProps,
+                  mobilePaper: {
+                    sx: {
+                      backgroundColor: "#63ceff",
+                    },
+                  },
+                }}
+              />
+            </div>
+          </section>
+        </div>
       </div>
     </section>
   );
